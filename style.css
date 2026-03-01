@@ -8,7 +8,6 @@
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
 }
-
 body
 {
     background-color: #EBF2FA;
@@ -21,23 +20,21 @@ body
     max-width: 100%;
     overflow-x: hidden;
 }
-
 .header
 {
     text-align: center;
     padding: 20px;
     background-image: url();
-    
 }
 .headermainPic
 {
     border-radius: 15px;
     width: 1500px;
+    max-width: 95%;
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
 }
-
 .headerTxt
 {
     color: #023e8a;
@@ -45,7 +42,6 @@ body
     font-weight: bolder;
     background: none;
 }
-
 .quote
 {
     text-align: center;
@@ -54,7 +50,6 @@ body
     text-shadow: 0px 3px rgba(0,0,0,0.6);
     font-family: 'Great Vibes', cursive;
 }
-
 .aboutSec
 {
     display: flex;
@@ -66,28 +61,43 @@ body
     max-width: 1650px;
     margin: 50px auto;
 }
-
+.aboutSec > a
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.aboutContent
+{
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.aboutImage
+{
+    flex: 1 1 400px;
+}
 .video
 {
     width: 800px;
+    max-width: 100%;
     border: 3px solid #023e8a;
     border-radius: 15px;
     box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
 }
-
 .aboutTxt
 {
     max-width: 600px;
     color: #FDFDFD;
     box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
-    font-size: 30PX;
+    font-size: 30px;
     background-color: #023e8a;
     padding: 20px;
     border-radius: 15px;
     text-align: justify;
     margin-top: 5px;
 }
-
 .abtBtns
 {
     padding: 20px;
@@ -98,7 +108,6 @@ body
     font-weight: bolder;
     color: #FDFDFD;
 }
-
 .abtBtns:hover
 {
     color: #e0e0e0;
@@ -106,7 +115,6 @@ body
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
-
 .galBtns
 {
     padding: 20px;
@@ -116,7 +124,6 @@ body
     font-weight: bolder;
     color: #023e8a;
 }
-
 .galBtns:hover
 {
     color: #e0e0e0;
@@ -124,11 +131,10 @@ body
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
-
 .imgSec
 {
     display: flex;
-    gap: 70PX;
+    gap: 70px;
     font-weight: bolder;
     padding: 40px;
     justify-content: center;
@@ -139,22 +145,20 @@ body
     border-radius: 10px;
     box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
 }
-
 .imgSec img
 {
     width: 600px;
+    max-width: 100%;
     border: 3px solid #FDFDFD;
 }
-
 .imgTxt
 {
     max-width: 600px;
     color: #FDFDFD;
-    font-size: 50PX;
+    font-size: 50px;
     margin-top: 75px;
     text-align: justify;
 }
-
 .mainContent
 {
     background-image: url(assets/contentbg.jpg);
@@ -164,47 +168,113 @@ body
     box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 600px)
+@media (max-width: 1024px)
 {
-    .header img
+    .headermainPic
     {
-        width: 400px;
+        width: 90%;
     }
-    .aboutSec img
+    .headerTxt
     {
-        width: 300px;
+        font-size: 36px;
     }
-    
-    .aboutSec
+    .quote
     {
-        max-width: 400px;
+        font-size: 45px;
     }
-
+    .video
+    {
+        width: 90%;
+    }
     .aboutTxt
     {
-        font-size: 15px;
+        font-size: 22px;
+        max-width: 90%;
     }
+    .imgSec img
+    {
+        width: 420px;
+    }
+    .imgTxt
+    {
+        font-size: 36px;
+        margin-top: 30px;
+    }
+    .abtBtns,
+    .galBtns
+    {
+        font-size: large;
+        padding: 15px;
+    }
+}
 
+@media (max-width: 600px)
+{
+    .header img,
+    .headermainPic
+    {
+        width: 95%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .headerTxt
+    {
+        font-size: 24px;
+    }
     .quote
     {
         font-size: 30px;
     }
-
-    .imgSec img
+    .aboutSec
     {
-        width: 300px;
+        max-width: 100%;
+        padding: 20px;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
     }
-
+    .aboutContent
+    {
+        width: 100%;
+    }
+    .aboutImage
+    {
+        width: 100%;
+    }
+    .video
+    {
+        width: 100%;
+    }
+    .aboutTxt
+    {
+        font-size: 15px;
+        max-width: 100%;
+    }
     .imgSec
     {
-        max-width: 400px;
+        max-width: 100%;
+        padding: 20px;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
     }
-
+    .imgSec img
+    {
+        width: 95%;
+    }
     .imgTxt
     {
         font-size: 20px;
+        margin-top: 10px;
+        max-width: 100%;
     }
-
+    .abtBtns,
+    .galBtns
+    {
+        padding: 10px;
+        font-size: large;
+        width: 100%;
+    }
     .mainBtns
     {
         padding: 10px;

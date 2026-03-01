@@ -96,6 +96,9 @@ body
 {
     display: flex;
     gap: 150px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .aboutAlignment img
@@ -107,6 +110,7 @@ body
     border: 2px solid #023e8a;
     box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
 }
+
 .pvm
 {
     display: flex;
@@ -203,14 +207,12 @@ body
 .leftSide, .rightSide
 {
     max-width: 750px;
-
 }
 
 .qualListTxt
 {
     font-family: 'Cinzel Decorative', serif;
     font-weight: bolder;
-
 }
 
 .qualObj
@@ -224,6 +226,7 @@ body
     border-top-right-radius: 15px;
     padding: 20px;
     gap: 35px;
+    flex-wrap: wrap;
 }
 
 .lastNum
@@ -265,3 +268,195 @@ body
     box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
 }
 
+.seperator
+{
+    width: 80%;
+    border: 1px solid #023e8a;
+}
+
+@media (max-width: 1024px)
+{
+    .mainBtns
+    {
+        font-size: large;
+        padding: 15px;
+    }
+    .aboutHeader
+    {
+        font-size: large;
+    }
+    .aboutTxt
+    {
+        max-width: 90%;
+    }
+    .aboutAlignment
+    {
+        gap: 40px;
+    }
+    .aboutAlignment img
+    {
+        width: 300px;
+        height: 350px;
+        margin-top: 60px;
+    }
+    .philosophyHeader, .visionHeader, .missionHeader
+    {
+        font-size: 50px;
+    }
+    .philosophyTxt, .visionTxt, .missionTxt
+    {
+        font-size: 20px;
+        max-width: 90%;
+    }
+    .philosophy, .vision, .mission
+    {
+        max-width: 90%;
+    }
+    .coreValues
+    {
+        max-width: 90%;
+    }
+    .integrityH, .positivityH, .mindfulnessH, .excellenceH
+    {
+        font-size: 25px;
+    }
+    .qualObj
+    {
+        max-width: 90%;
+    }
+    .lastNum
+    {
+        max-width: 90%;
+    }
+    .qualObjHeader
+    {
+        max-width: 90%;
+        font-size: large;
+    }
+    .pvm
+    {
+        max-width: 90%;
+        padding-top: 60px;
+    }
+    .about
+    {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px)
+{
+    .header
+    {
+        margin-top: 20px;
+    }
+    .mainBtns
+    {
+        font-size: medium;
+        padding: 12px;
+        width: 100%;
+        text-align: center;
+    }
+    .about
+    {
+        max-width: 95%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+    .aboutHeader
+    {
+        font-size: medium;
+        padding: 12px;
+    }
+    .aboutAlignment
+    {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .aboutAlignment img
+    {
+        width: 220px;
+        height: 260px;
+        margin-top: 0;
+    }
+    .aboutTxt
+    {
+        max-width: 100%;
+        font-size: 12px;
+    }
+    .pvm
+    {
+        max-width: 95%;
+        padding-top: 30px;
+        margin: 0 auto 30px auto;
+    }
+    .philosophyHeader, .visionHeader, .missionHeader
+    {
+        font-size: 32px;
+    }
+    .philosophyTxt, .visionTxt, .missionTxt
+    {
+        font-size: 14px;
+        margin: 20px auto 30px auto;
+        max-width: 95%;
+    }
+    .philosophy, .vision, .mission
+    {
+        max-width: 95%;
+        padding: 20px;
+        margin: 0 auto 30px auto;
+    }
+    .coreValues
+    {
+        max-width: 95%;
+        padding: 20px;
+    }
+    .coreValues p
+    {
+        font-size: 14px;
+    }
+    .integrityH, .positivityH, .mindfulnessH, .excellenceH
+    {
+        font-size: 18px;
+        margin-right: 10px;
+        display: block;
+        margin-bottom: 8px;
+    }
+    .qualObjHeader
+    {
+        max-width: 90%;
+        font-size: medium;
+        padding: 12px;
+        margin: 20px auto;
+    }
+    .qualObj
+    {
+        max-width: 95%;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        gap: 20px;
+    }
+    .leftSide, .rightSide
+    {
+        max-width: 100%;
+        width: 100%;
+    }
+    .qualList
+    {
+        font-size: 12px;
+    }
+    .qualListTxt
+    {
+        max-width: 100%;
+        font-size: 11px;
+        padding: 12px;
+    }
+    .lastNum
+    {
+        max-width: 95%;
+        padding: 15px 15px 20px 15px;
+        margin-bottom: 30px;
+    }
+}
