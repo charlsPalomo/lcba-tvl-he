@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Cinzel+Decorative:wght@400;700;900&family=Great+Vibes&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Cinzel+Decorative:wght@400;700;900&family=Great+Vibes&display=swap');
 
 *
 {
@@ -26,19 +25,20 @@ body
 {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    padding: 20px;
 }
 
 .mainBtns
 {
-    padding: 20px;
-    font-size: xx-large;
-    background-color: #023e8a;
+    padding: clamp(10px, 2vw, 20px);
+    font-size: clamp(14px, 2vw, 24px);
+    background-color: #FDFDFD;
     border: none;
     font-weight: bolder;
-    color: #FDFDFD;
+    color: #023e8a;
     position: sticky;
     top: 0;
+    cursor: pointer;
 }
 
 .mainBtns:hover
@@ -46,417 +46,379 @@ body
     color: #e0e0e0;
     background-color: #0466c8;
     transition: ease-in-out 0.2s;
-    cursor: pointer;
 }
 
-.about
+.quote
 {
     text-align: center;
-    display: flex;
-    margin: 50px auto;
-    flex-direction: column;
-    border-radius: 15px;
-    justify-content: center;
-    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
-    background-color: #FDFDFD;
-    padding: 20px;
-    gap: 20px;
-    max-width: 1500px;
-    align-items: center;
-}
-
-.aboutHeader
-{
-    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 5vw, 60px);
+    color: #FDFDFD;
     text-shadow: 0px 3px rgba(0,0,0,0.6);
-    color: #FDFDFD;
-    font-size: xx-large;
-    font-weight: bolder;
-    background-color: #023e8a;
-    border-radius: 15px;
-    padding: 20px;
+    font-family: 'Great Vibes', cursive;
+    padding: 10px 20px;
 }
 
-.aboutTxt
+.mainContent
 {
-    max-width: 700px;
-    font-weight: bolder;
-    align-self: center;
-    text-align: justify;
-    color: #FDFDFD;
-    background-color: #023e8a;
-    border-radius: 15px;
-    padding: 20px;
-    font-family: 'Cinzel Decorative', serif;
-    text-shadow: 0px 3px rgba(0,0,0,0.6);
-    box-shadow: 0px 3px rgba(0,0,0,0.6);
-}
-
-.aboutAlignment
-{
+    background-image: url(../assets/contentbg.jpg);
+    margin-top: 25px;
+    padding-top: 15px;
+    padding-bottom: 40px;
+    box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.3);
     display: flex;
-    gap: 150px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.aboutAlignment img
-{
-    width: 415px;
-    height: 485px;
-    border-radius: 10000px;
-    margin-top: 175px;
-    border: 2px solid #023e8a;
-    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
-}
-
-.pvm
-{
-    display: flex;
-    justify-content: center;
     flex-direction: column;
-    text-align: center;
-    background-color: #FDFDFD;
-    border-radius: 15px;
-    padding-top: 125px;
-    max-width: 1600px;
-    margin: 0 auto 50px auto;
-    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
+    gap: 50px;
 }
 
-.pvm p
+.sectionLabel
 {
     font-family: 'Cinzel Decorative', serif;
     font-weight: bolder;
-    color: #FDFDFD;
-}
-
-.philosophyTxt, .visionTxt, .missionTxt
-{
-    max-width: 1000px;
     text-align: center;
-    margin: 50px auto 75px auto;
-    font-size: 25px;
-}
-
-.philosophyHeader, .visionHeader, .missionHeader
-{
-    font-size: 75px;
-}
-
-.philosophy, .vision, .mission
-{
-    background-color: #023e8a;
-    max-width: 1400px;
-    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
-    border-radius: 15px;
-    margin: 0 auto 75px auto;
-    padding: 40px;
-}
-
-.coreValues
-{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
-    background-color: #FDFDFD;
-    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
-    border-radius: 15px;
-    max-width: 1450px;
+    max-width: fit-content;
     margin: 0 auto 0 auto;
-    padding: 40px;
-}
-
-.coreValues p, .integrityH, .positivityH, .mindfulnessH, .excellenceH
-{
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: bolder;
-}
-
-.coreValues p
-{
-    font-size: 20px;
-    font-weight: bolder;
-}
-
-.integrityH, .positivityH, .mindfulnessH, .excellenceH
-{
-    font-size: 35px;
-    margin-right: 25px;
-    background-color: #023e8a;
+    font-size: clamp(16px, 2.5vw, 28px);
     color: #FDFDFD;
-    padding: 10px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-
-.qualList
-{
-    list-style-type: decimal;
-    font-size: 15px;
     background-color: #023e8a;
-    color: #FDFDFD;
-    list-style-position: inside;
-    padding: 20px;
+    padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 30px);
     border-radius: 15px;
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
+    display: inline-block;
 }
 
-.leftSide, .rightSide
+.sectionLabel.centered
 {
-    max-width: 750px;
+    display: block;
+    text-align: center;
+    max-width: fit-content;
+    margin: 0 auto 30px auto;
 }
 
-.qualListTxt
-{
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: bolder;
-}
-
-.qualObj
+.founderSec
 {
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    background-color: #FDFDFD;
-    max-width: 1450px;
-    margin: auto;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    padding: 20px;
-    gap: 35px;
+    gap: clamp(30px, 5vw, 70px);
+    padding: clamp(20px, 4vw, 40px);
     flex-wrap: wrap;
+    max-width: 1650px;
+    margin: 0 auto;
 }
 
-.lastNum
+.founderContent
+{
+    flex: 1 1 400px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.founderTxt
+{
+    color: #FDFDFD;
+    font-size: clamp(14px, 1.6vw, 20px);
+    background-color: #023e8a;
+    padding: clamp(16px, 2vw, 24px);
+    border-radius: 15px;
+    text-align: justify;
+    line-height: 1.8;
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
+}
+
+.founderImage
+{
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.founderImage img
+{
+    width: clamp(200px, 25vw, 380px);
+    height: clamp(240px, 30vw, 450px);
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #023e8a;
+    box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
+}
+
+.founderCaption
+{
+    color: #FDFDFD;
+    background-color: #023e8a;
+    padding: 8px 18px;
+    border-radius: 15px;
+    font-size: clamp(12px, 1.3vw, 15px);
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.pvmSec
+{
+    padding: clamp(20px, 4vw, 40px);
+    max-width: 1650px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.pvmCards
 {
     display: flex;
-    max-width: 1450px;
-    text-align: center;
+    gap: clamp(16px, 2vw, 30px);
+    flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
+}
+
+.pvmCard
+{
+    flex: 1 1 280px;
+    max-width: 500px;
     background-color: #FDFDFD;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    color: #FDFDFD;
-    list-style-position: inside;
-    padding-bottom: 30px;
-    margin-bottom: 40px;
-}
-
-.qualListTxt
-{
-    max-width: 750px;
-    background-color: #023e8a;
-    padding: 20px;
     border-radius: 15px;
+    padding: clamp(20px, 3vw, 35px);
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.qualObjHeader
+.pvmCard.featured
 {
-    text-align: center;
-    margin: 40px auto 40px auto;
-    font-size: xx-large;
-    font-family: 'Cinzel Decorative', serif;
     background-color: #023e8a;
-    max-width: 400px;
-    padding: 20px;
-    font-weight: bolder;
+}
+
+.pvmCard.featured .pvmCardHeader,
+.pvmCard.featured .pvmCardTxt
+{
     color: #FDFDFD;
+}
+
+.pvmCardHeader
+{
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: bolder;
+    font-size: clamp(16px, 2vw, 22px);
+    color: #023e8a;
+}
+
+.pvmCardTxt
+{
+    font-size: clamp(13px, 1.4vw, 17px);
+    color: #023e8a;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+.valuesSec
+{
+    background-color: #023e8a;
+    max-width: 1650px;
+    margin: 0 auto;
+    width: 100%;
+    padding: clamp(20px, 4vw, 40px);
     border-radius: 15px;
     box-shadow: 0px 8px 10px 2px rgba(0,0,0,0.3);
 }
 
-.seperator
+.valuesGrid
 {
-    width: 80%;
-    border: 1px solid #023e8a;
+    display: flex;
+    gap: clamp(14px, 2vw, 25px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.valueCard
+{
+    flex: 1 1 200px;
+    max-width: 340px;
+    background-color: #FDFDFD;
+    border-radius: 15px;
+    padding: clamp(16px, 2.5vw, 28px);
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.valueTitle
+{
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(14px, 1.8vw, 20px);
+    font-weight: bolder;
+    color: #023e8a;
+}
+
+.valueTxt
+{
+    font-size: clamp(13px, 1.3vw, 16px);
+    color: #023e8a;
+    line-height: 1.6;
+}
+
+.objSec
+{
+    padding: clamp(20px, 4vw, 40px);
+    max-width: 1650px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.objGrid
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 1.5vw, 20px);
+}
+
+.objCard
+{
+    background-color: #023e8a;
+    border-radius: 15px;
+    padding: clamp(14px, 2vw, 22px) clamp(16px, 2vw, 24px);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
+    color: #FDFDFD;
+}
+
+.objCard.full
+{
+    grid-column: 1 / -1;
+    background-color: #0466c8;
+}
+
+.objNum
+{
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 900;
+    color: rgba(253, 253, 253, 0.5);
+    flex-shrink: 0;
+    line-height: 1.2;
+}
+
+.objCard.full .objNum
+{
+    color: #FDFDFD;
+}
+
+.objCard p
+{
+    font-size: clamp(13px, 1.3vw, 16px);
+    line-height: 1.7;
+    color: #FDFDFD;
 }
 
 @media (max-width: 1024px)
 {
+    .pvmCards
+    {
+        gap: 20px;
+    }
+    .valuesGrid
+    {
+        gap: 16px;
+    }
+    .objGrid
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px)
+{
+    .header
+    {
+        flex-wrap: wrap;
+    }
     .mainBtns
     {
-        font-size: large;
-        padding: 15px;
+        width: 100%;
+        text-align: center;
     }
-    .aboutHeader
+    .founderSec
     {
-        font-size: large;
+        flex-direction: column;
+        align-items: center;
     }
-    .aboutTxt
+    .founderContent
     {
-        max-width: 90%;
+        flex: unset;
+        width: 100%;
     }
-    .aboutAlignment
+    .founderImage
     {
-        gap: 40px;
+        width: 100%;
     }
-    .aboutAlignment img
+    .pvmCard
     {
-        width: 300px;
-        height: 350px;
-        margin-top: 60px;
+        max-width: 100%;
     }
-    .philosophyHeader, .visionHeader, .missionHeader
+    .valueCard
     {
-        font-size: 50px;
+        max-width: 100%;
     }
-    .philosophyTxt, .visionTxt, .missionTxt
+    .mainContent
     {
-        font-size: 20px;
-        max-width: 90%;
-    }
-    .philosophy, .vision, .mission
-    {
-        max-width: 90%;
-    }
-    .coreValues
-    {
-        max-width: 90%;
-    }
-    .integrityH, .positivityH, .mindfulnessH, .excellenceH
-    {
-        font-size: 25px;
-    }
-    .qualObj
-    {
-        max-width: 90%;
-    }
-    .lastNum
-    {
-        max-width: 90%;
-    }
-    .qualObjHeader
-    {
-        max-width: 90%;
-        font-size: large;
-    }
-    .pvm
-    {
-        max-width: 90%;
-        padding-top: 60px;
-    }
-    .about
-    {
-        max-width: 90%;
+        gap: 30px;
     }
 }
 
 @media (max-width: 600px)
 {
-    .header
+    .objGrid
     {
-        margin-top: 20px;
+        grid-template-columns: 1fr;
     }
-    .mainBtns
+    .objCard.full
     {
-        font-size: medium;
-        padding: 12px;
-        width: 100%;
-        text-align: center;
+        grid-column: 1;
     }
-    .about
-    {
-        max-width: 95%;
-        margin: 20px auto;
-        padding: 15px;
-    }
-    .aboutHeader
-    {
-        font-size: medium;
-        padding: 12px;
-    }
-    .aboutAlignment
+    .valuesGrid
     {
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
     }
-    .aboutAlignment img
+    .pvmCards
+    {
+        flex-direction: column;
+    }
+    .founderImage img
     {
         width: 220px;
         height: 260px;
-        margin-top: 0;
     }
-    .aboutTxt
+    .mainContent
     {
-        max-width: 100%;
-        font-size: 12px;
-    }
-    .pvm
-    {
-        max-width: 95%;
-        padding-top: 30px;
-        margin: 0 auto 30px auto;
-    }
-    .philosophyHeader, .visionHeader, .missionHeader
-    {
-        font-size: 32px;
-    }
-    .philosophyTxt, .visionTxt, .missionTxt
-    {
-        font-size: 14px;
-        margin: 20px auto 30px auto;
-        max-width: 95%;
-    }
-    .philosophy, .vision, .mission
-    {
-        max-width: 95%;
-        padding: 20px;
-        margin: 0 auto 30px auto;
-    }
-    .coreValues
-    {
-        max-width: 95%;
-        padding: 20px;
-    }
-    .coreValues p
-    {
-        font-size: 14px;
-    }
-    .integrityH, .positivityH, .mindfulnessH, .excellenceH
-    {
-        font-size: 18px;
-        margin-right: 10px;
-        display: block;
-        margin-bottom: 8px;
-    }
-    .qualObjHeader
-    {
-        max-width: 90%;
-        font-size: medium;
-        padding: 12px;
-        margin: 20px auto;
-    }
-    .qualObj
-    {
-        max-width: 95%;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
         gap: 20px;
+        padding-bottom: 30px;
     }
-    .leftSide, .rightSide
+}
+
+@media (max-width: 400px)
+{
+    .founderImage img
     {
-        max-width: 100%;
-        width: 100%;
+        width: 180px;
+        height: 215px;
     }
-    .qualList
+    .sectionLabel
     {
-        font-size: 12px;
+        font-size: 14px;
+        padding: 10px 14px;
+        border-radius: 10px;
     }
-    .qualListTxt
+    .pvmCard,
+    .valueCard,
+    .objCard
     {
-        max-width: 100%;
-        font-size: 11px;
-        padding: 12px;
-    }
-    .lastNum
-    {
-        max-width: 95%;
-        padding: 15px 15px 20px 15px;
-        margin-bottom: 30px;
+        border-radius: 10px;
     }
 }
