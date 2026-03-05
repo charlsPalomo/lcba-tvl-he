@@ -38,14 +38,14 @@ body
 .headerTxt
 {
     color: #023e8a;
-    font-size: 50px;
+    font-size: clamp(20px, 4vw, 50px);
     font-weight: bolder;
     background: none;
 }
 .quote
 {
     text-align: center;
-    font-size: 60px;
+    font-size: clamp(24px, 5vw, 60px);
     color: #FDFDFD;
     text-shadow: 0px 3px rgba(0,0,0,0.6);
     font-family: 'Great Vibes', cursive;
@@ -73,10 +73,12 @@ body
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
 }
 .aboutImage
 {
     flex: 1 1 400px;
+    min-width: 0;
 }
 .video
 {
@@ -91,7 +93,7 @@ body
     max-width: 600px;
     color: #FDFDFD;
     box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.3);
-    font-size: 30px;
+    font-size: clamp(14px, 2vw, 30px);
     background-color: #023e8a;
     padding: 20px;
     border-radius: 15px;
@@ -100,8 +102,8 @@ body
 }
 .abtBtns
 {
-    padding: 20px;
-    font-size: xx-large;
+    padding: clamp(10px, 2vw, 20px);
+    font-size: clamp(14px, 2vw, 24px);
     justify-content: center;
     background-color: #023e8a;
     border: none;
@@ -117,8 +119,8 @@ body
 }
 .galBtns
 {
-    padding: 20px;
-    font-size: xx-large;
+    padding: clamp(10px, 2vw, 20px);
+    font-size: clamp(14px, 2vw, 24px);
     background-color: #FDFDFD;
     border: none;
     font-weight: bolder;
@@ -155,7 +157,7 @@ body
 {
     max-width: 600px;
     color: #FDFDFD;
-    font-size: 50px;
+    font-size: clamp(18px, 3.5vw, 50px);
     margin-top: 75px;
     text-align: justify;
 }
@@ -167,7 +169,6 @@ body
     padding-bottom: 15px;
     box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.3);
 }
-
 .gameSec
 {
     background-color: #023e8a;
@@ -180,27 +181,24 @@ body
     justify-content: center;
     border-radius: 15px;
 }
-
 .gameTxt
 {
     font-family: 'Inter', sans-serif;
     font-weight: bolder;
-    font-size: 25px;
+    font-size: clamp(16px, 2vw, 25px);
     text-align: center;
     margin-bottom: 45px;
     color: #FDFDFD;
 }
-
 .gameBtn
 {
-    padding: 20px;
-    font-size: xx-large;
+    padding: clamp(10px, 2vw, 20px);
+    font-size: clamp(14px, 2vw, 24px);
     background-color: #FDFDFD;
     border: none;
     font-weight: bolder;
     color: #023e8a;
 }
-
 .gameBtn:hover
 {
     color: #e0e0e0;
@@ -209,19 +207,66 @@ body
     cursor: pointer;
 }
 
+@media (max-width: 1280px)
+{
+    .headermainPic
+    {
+        width: 92%;
+    }
+    .imgSec img
+    {
+        width: 480px;
+    }
+    .imgTxt
+    {
+        margin-top: 40px;
+    }
+    .aboutSec
+    {
+        gap: 40px;
+    }
+    .imgSec
+    {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 1215px)
+{
+    .imgSec
+    {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 25px;
+        margin: 30px auto;
+        max-width: 95%;
+    }
+    .imgSec img
+    {
+        width: 100%;
+        max-width: 750px;
+    }
+    .imgTxt
+    {
+        margin-top: 0;
+        max-width: 750px;
+        text-align: center;
+    }
+    .galBtns
+    {
+        width: 100%;
+        max-width: 750px;
+    }
+}
+
 @media (max-width: 1024px)
 {
     .headermainPic
     {
         width: 90%;
-    }
-    .headerTxt
-    {
-        font-size: 36px;
-    }
-    .quote
-    {
-        font-size: 45px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     .video
     {
@@ -229,59 +274,58 @@ body
     }
     .aboutTxt
     {
-        font-size: 22px;
         max-width: 90%;
-    }
-    .imgSec img
-    {
-        width: 420px;
     }
     .imgTxt
     {
-        font-size: 36px;
-        margin-top: 30px;
+        margin-top: 0;
     }
-    .abtBtns,
-    .galBtns
+    .aboutSec
     {
-        font-size: large;
-        padding: 15px;
+        gap: 30px;
+        padding: 30px;
+        margin: 30px auto;
+    }
+    .imgSec
+    {
+        gap: 25px;
+        padding: 25px;
+        margin: 25px auto;
+    }
+    .gameSec
+    {
+        padding: 30px;
+        max-width: 95%;
     }
 }
 
-@media (max-width: 600px)
+@media (max-width: 768px)
 {
-    .header img,
     .headermainPic
     {
         width: 95%;
         margin-top: 20px;
         margin-bottom: 20px;
-    }
-    .headerTxt
-    {
-        font-size: 24px;
-    }
-    .quote
-    {
-        font-size: 30px;
+        border-radius: 10px;
     }
     .aboutSec
     {
-        max-width: 100%;
-        padding: 20px;
-        gap: 15px;
         flex-direction: column;
         align-items: center;
-        margin: 15px auto;
+        gap: 20px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 100%;
     }
     .aboutContent
     {
         width: 100%;
+        flex: unset;
     }
     .aboutImage
     {
         width: 100%;
+        flex: unset;
     }
     .video
     {
@@ -289,38 +333,128 @@ body
     }
     .aboutTxt
     {
-        font-size: 15px;
         max-width: 100%;
     }
     .imgSec
     {
-        max-width: 100%;
+        gap: 20px;
         padding: 20px;
-        gap: 15px;
-        flex-direction: column;
-        align-items: center;
-        margin: 15px auto;
+        margin: 20px auto;
+        max-width: 100%;
+        border-radius: 8px;
     }
     .imgSec img
     {
         width: 95%;
+        max-width: 100%;
     }
     .imgTxt
     {
-        font-size: 20px;
-        margin-top: 0;
         max-width: 100%;
     }
-    .abtBtns,
     .galBtns
     {
-        padding: 10px;
-        font-size: large;
+        max-width: 100%;
+    }
+    .gameSec
+    {
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 100%;
+    }
+    .gameTxt
+    {
+        margin-bottom: 25px;
+    }
+    .abtBtns,
+    .galBtns,
+    .gameBtn
+    {
         width: 100%;
+    }
+}
+
+@media (max-width: 600px)
+{
+    .header
+    {
+        padding: 10px;
+    }
+    .headermainPic
+    {
+        width: 95%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .aboutSec
+    {
+        padding: 15px;
+        gap: 15px;
+        margin: 15px auto;
+    }
+    .imgSec
+    {
+        padding: 15px;
+        gap: 15px;
+        margin: 15px auto;
+    }
+    .imgSec img
+    {
+        width: 100%;
+    }
+    .mainContent
+    {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .gameSec
+    {
+        padding: 15px;
     }
     .mainBtns
     {
         padding: 10px;
         font-size: large;
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .headermainPic
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    .aboutSec
+    {
+        padding: 10px;
+        gap: 10px;
+        margin: 10px auto;
+    }
+    .imgSec
+    {
+        padding: 10px;
+        gap: 10px;
+        margin: 10px auto;
+    }
+    .gameSec
+    {
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .gameTxt
+    {
+        margin-bottom: 15px;
+    }
+    .video
+    {
+        border-radius: 8px;
+    }
+    .aboutTxt
+    {
+        border-radius: 8px;
+        padding: 12px;
     }
 }

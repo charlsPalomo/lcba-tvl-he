@@ -26,13 +26,13 @@ body
 {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: clamp(20px, 4vw, 50px);
 }
 
 .mainBtns
 {
-    padding: 20px;
-    font-size: xx-large;
+    padding: clamp(10px, 2vw, 20px);
+    font-size: clamp(14px, 2vw, 24px);
     background-color: #FDFDFD;
     border: none;
     font-weight: bolder;
@@ -61,20 +61,166 @@ body
 {
     font-family: 'Cinzel Decorative', serif;
     font-weight: bolder;
-    font-size: xx-large;
-    margin: 40px auto 40px auto;
+    font-size: clamp(16px, 3vw, 28px);
+    margin: clamp(20px, 4vw, 40px) auto;
     color: #FDFDFD;
     background-color: #023e8a;
     max-width: fit-content;
-    padding: 20px;
-    border-radius: 15px; 
+    padding: clamp(12px, 2vw, 20px);
+    border-radius: 15px;
 }
 
-.imageGallery
+.gallery-container
 {
-    background-color: #023e8a;
-    max-width: fit-content;
-    margin: 0 auto 50px auto;
-    padding: 50px;
-    border-radius: 15px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(10px, 2vw, 20px);
+}
+
+.perspective-box,
+.carousel
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(8px, 1.5vw, 15px);
+}
+
+.carousel img
+{
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: brightness(0.8);
+}
+
+.carousel img:hover
+{
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+.controls
+{
+    display: none;
+}
+
+.lightbox
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: zoom-out;
+    padding: 20px;
+}
+
+.lightbox img
+{
+    max-width: 90%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+@media (max-width: 1024px)
+{
+    .gallery-container
+    {
+        max-width: 95%;
+    }
+    .perspective-box,
+    .carousel
+    {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .mHeaderTxt
+    {
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .header
+    {
+        flex-wrap: wrap;
+    }
+    .mainBtns
+    {
+        width: 100%;
+    }
+    .gallery-container
+    {
+        max-width: 100%;
+    }
+    .perspective-box,
+    .carousel
+    {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .mHeaderTxt
+    {
+        max-width: 90%;
+        border-radius: 10px;
+    }
+    .lightbox img
+    {
+        max-width: 95%;
+        max-height: 85%;
+    }
+}
+
+@media (max-width: 600px)
+{
+    .perspective-box,
+    .carousel
+    {
+        grid-template-columns: 1fr;
+    }
+    .carousel img
+    {
+        aspect-ratio: 16/9;
+    }
+    .mHeaderTxt
+    {
+        max-width: 95%;
+        border-radius: 8px;
+    }
+    .lightbox img
+    {
+        max-width: 98%;
+        max-height: 90%;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .perspective-box,
+    .carousel
+    {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    .mHeaderTxt
+    {
+        max-width: 98%;
+        border-radius: 6px;
+    }
+    .gallery-container
+    {
+        padding: 8px;
+    }
 }

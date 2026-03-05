@@ -33,6 +33,9 @@ let level = 1;
 let timerId;
 let dragStartIndex;
 
+let touchDragIndex = null;
+let touchClone = null;
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -60,29 +63,113 @@ function initLevel() {
         
         li.addEventListener('dragstart', () => {
             dragStartIndex = index;
+            li.classList.add('dragging');
+        });
+
+        li.addEventListener('dragend', () => {
+            li.classList.remove('dragging');
         });
         
         li.addEventListener('dragover', (e) => {
             e.preventDefault();
         });
         
-        li.addEventListener('drop', (e) => {
+        li.addEventListener('drop', () => {
             const dragEndIndex = +li.getAttribute('data-index');
-            const temp = gameItems[dragStartIndex];
-            gameItems[dragStartIndex] = gameItems[dragEndIndex];
-            gameItems[dragEndIndex] = temp;
-            renderList();
+            swapItems(dragStartIndex, dragEndIndex);
         });
+
+        li.addEventListener('touchstart', onTouchStart, { passive: true });
+        li.addEventListener('touchmove', onTouchMove, { passive: false });
+        li.addEventListener('touchend', onTouchEnd);
         
         list.appendChild(li);
     });
+}
+
+function swapItems(fromIndex, toIndex) {
+    if (fromIndex === toIndex) return;
+    const temp = gameItems[fromIndex];
+    gameItems[fromIndex] = gameItems[toIndex];
+    gameItems[toIndex] = temp;
+    renderList();
 }
 
 function renderList() {
     const listItems = document.querySelectorAll('#step-list li');
     listItems.forEach((li, i) => {
         li.innerText = gameItems[i];
+        li.setAttribute('data-index', i);
     });
+}
+
+function onTouchStart(e) {
+    const li = e.currentTarget;
+    touchDragIndex = +li.getAttribute('data-index');
+
+    touchClone = li.cloneNode(true);
+    touchClone.style.position = 'fixed';
+    touchClone.style.zIndex = '9999';
+    touchClone.style.opacity = '0.85';
+    touchClone.style.pointerEvents = 'none';
+    touchClone.style.width = li.offsetWidth + 'px';
+    touchClone.style.margin = '0';
+    touchClone.style.left = li.getBoundingClientRect().left + 'px';
+    touchClone.style.top = li.getBoundingClientRect().top + 'px';
+    document.body.appendChild(touchClone);
+
+    li.classList.add('dragging');
+}
+
+function onTouchMove(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+
+    if (touchClone) {
+        touchClone.style.left = (touch.clientX - touchClone.offsetWidth / 2) + 'px';
+        touchClone.style.top = (touch.clientY - touchClone.offsetHeight / 2) + 'px';
+    }
+
+    const list = document.getElementById('step-list');
+    const items = list.querySelectorAll('li:not(.dragging)');
+    items.forEach(item => item.classList.remove('drag-over'));
+
+    const target = getTouchTarget(touch.clientX, touch.clientY);
+    if (target) target.classList.add('drag-over');
+}
+
+function onTouchEnd(e) {
+    const touch = e.changedTouches[0];
+    const target = getTouchTarget(touch.clientX, touch.clientY);
+
+    if (target !== null) {
+        const toIndex = +target.getAttribute('data-index');
+        swapItems(touchDragIndex, toIndex);
+    }
+
+    if (touchClone) {
+        touchClone.remove();
+        touchClone = null;
+    }
+
+    document.querySelectorAll('#step-list li').forEach(li => {
+        li.classList.remove('dragging', 'drag-over');
+    });
+
+    touchDragIndex = null;
+}
+
+function getTouchTarget(x, y) {
+    const list = document.getElementById('step-list');
+    const items = list.querySelectorAll('li');
+    for (const item of items) {
+        if (item.classList.contains('dragging')) continue;
+        const rect = item.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            return item;
+        }
+    }
+    return null;
 }
 
 function startGame() {
