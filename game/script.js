@@ -1,220 +1,354 @@
-const database = [
-    { 
-        name: "Cookery: Sautéing Onions", 
-        steps: ["Heat pan on medium-high", "Add oil or butter", "Toss in diced onions", "Sauté until translucent", "Season with salt/pepper"], 
-        fails: ["Add onions to a cold pan", "Wash onions after dicing"] 
-    },
-    { 
-        name: "Cookery: Boiling Pasta", 
-        steps: ["Fill pot with water", "Add plenty of salt", "Bring to a rolling boil", "Cook pasta until al dente", "Drain and reserve water"], 
-        fails: ["Rinse pasta with cold water", "Add oil to the water"] 
-    },
-    { 
-        name: "Safety: HACCP Sanitizing", 
-        steps: ["Scrape food off plates", "Wash with warm soapy water", "Rinse with clean water", "Submerge in sanitizer solution", "Air dry on a clean rack"], 
-        fails: ["Dry plates with a dirty towel", "Use cold water for grease"] 
-    },
-    { 
-        name: "Skills: Making Brown Stock", 
-        steps: ["Roast bones until brown", "Add mirepoix and brown", "Cover with cold water", "Simmer and skim impurities", "Strain through cheesecloth"], 
-        fails: ["Boil the stock rapidly", "Stir the stock constantly"] 
-    },
-    { 
-        name: "Preparation: Deep Frying", 
-        steps: ["Heat oil to 180°C", "Pat the food dry", "Lower food gently into oil", "Fry until golden brown", "Drain on paper towels"], 
-        fails: ["Drop wet food into hot oil", "Overcrowd the fryer basket"] 
-    }
+const KG_RECIPES = [
+  {
+    name: "Sinangag (Garlic Fried Rice)",
+    emoji: "🍚",
+    steps: [
+      { action: "Sauté garlic",   correct: "🧄 Garlic",        distractors: ["🧅 Onion","🌶️ Chili","🫚 Oil","🍅 Tomato"] },
+      { action: "Add cold rice",  correct: "🍚 Cold Rice",      distractors: ["🍞 Bread","🥔 Potato","🥚 Egg","🌽 Corn"] },
+      { action: "Season it",      correct: "🧂 Salt",           distractors: ["🍯 Sugar","🌿 Basil","🫙 Vinegar","🌶️ Chili"] },
+    ]
+  },
+  {
+    name: "Scrambled Eggs",
+    emoji: "🥚",
+    steps: [
+      { action: "Crack eggs",     correct: "🥚 Egg",            distractors: ["🥛 Milk","🧀 Cheese","🫚 Oil","🥔 Potato"] },
+      { action: "Add milk",       correct: "🥛 Milk",           distractors: ["💧 Water","🧃 Juice","🍶 Soy Sauce","🍋 Lemon"] },
+      { action: "Cook in pan",    correct: "🍳 Pan",            distractors: ["🥘 Pot","🫕 Wok","🍲 Casserole","🥗 Bowl"] },
+    ]
+  },
+  {
+    name: "Nilaga (Boiled Beef Soup)",
+    emoji: "🍖",
+    steps: [
+      { action: "Boil beef",      correct: "🥩 Beef",           distractors: ["🍗 Chicken","🐟 Fish","🥓 Bacon","🦐 Shrimp"] },
+      { action: "Add potato",     correct: "🥔 Potato",         distractors: ["🌽 Corn","🧅 Onion","🥦 Broccoli","🥕 Carrot"] },
+      { action: "Add cabbage",    correct: "🥬 Cabbage",        distractors: ["🥗 Lettuce","🫑 Bell Pepper","🍅 Tomato","🥦 Broccoli"] },
+      { action: "Season broth",   correct: "🧂 Salt",           distractors: ["🫙 Vinegar","🌶️ Chili","🍯 Sugar","🧄 Garlic"] },
+    ]
+  },
+  {
+    name: "Sinigang (Tamarind Soup)",
+    emoji: "🍜",
+    steps: [
+      { action: "Boil pork",           correct: "🥩 Pork Ribs",   distractors: ["🍗 Chicken","🐟 Fish","🦐 Shrimp","🥓 Bacon"] },
+      { action: "Add tamarind mix",    correct: "🍋 Tamarind Mix", distractors: ["🍊 Calamansi","🫙 Vinegar","🌶️ Chili","🧂 Salt"] },
+      { action: "Add kangkong",        correct: "🥬 Kangkong",     distractors: ["🥦 Broccoli","🥕 Carrot","🌽 Corn","🍅 Tomato"] },
+      { action: "Add fish sauce",      correct: "🫙 Fish Sauce",   distractors: ["🧂 Salt","🍯 Sugar","🧄 Garlic","🌶️ Chili"] },
+    ]
+  },
+  {
+    name: "Fried Tilapia",
+    emoji: "🐟",
+    steps: [
+      { action: "Prepare tilapia",  correct: "🐟 Tilapia",  distractors: ["🦐 Shrimp","🥩 Beef","🍗 Chicken","🦑 Squid"] },
+      { action: "Season fish",      correct: "🧂 Salt",     distractors: ["🍯 Sugar","🌶️ Chili","🫙 Vinegar","🍋 Lemon"] },
+      { action: "Heat oil",         correct: "🫚 Oil",      distractors: ["💧 Water","🥛 Milk","🍶 Soy Sauce","🍊 Juice"] },
+      { action: "Fry until golden", correct: "🍳 Pan",      distractors: ["🥘 Pot","🫕 Wok","🍲 Casserole","🥗 Bowl"] },
+    ]
+  },
+  {
+    name: "Ginisang Munggo",
+    emoji: "🫘",
+    steps: [
+      { action: "Sauté onion",    correct: "🧅 Onion",       distractors: ["🥕 Carrot","🍅 Tomato","🫑 Bell Pepper","🌽 Corn"] },
+      { action: "Add mung beans", correct: "🫘 Mung Beans",  distractors: ["🥜 Peanuts","🌾 Rice","🥔 Potato","🍚 Cooked Rice"] },
+      { action: "Add pork",       correct: "🥩 Pork",        distractors: ["🍗 Chicken","🥚 Egg","🧀 Cheese","🐟 Fish"] },
+      { action: "Add malunggay",  correct: "🌿 Malunggay",   distractors: ["🥬 Cabbage","🍃 Basil","🌱 Spinach","🥦 Broccoli"] },
+    ]
+  },
+  {
+    name: "Pancit Bihon",
+    emoji: "🍝",
+    steps: [
+      { action: "Soak noodles",        correct: "🍝 Bihon Noodles", distractors: ["🍜 Miki","🍞 Bread","🌾 Rice","🥔 Potato"] },
+      { action: "Sauté garlic",        correct: "🧄 Garlic",        distractors: ["🌶️ Chili","🫚 Oil","🍯 Sugar","🧅 Onion"] },
+      { action: "Add chicken",         correct: "🍗 Chicken",       distractors: ["🥩 Beef","🐟 Fish","🦐 Shrimp","🥚 Egg"] },
+      { action: "Season w/ soy sauce", correct: "🍶 Soy Sauce",     distractors: ["🧂 Salt","🫙 Vinegar","🌶️ Chili","🍯 Sugar"] },
+    ]
+  },
+  {
+    name: "Chicken Adobo",
+    emoji: "🍗",
+    steps: [
+      { action: "Marinate in soy sauce", correct: "🍶 Soy Sauce", distractors: ["🧂 Salt","🍯 Honey","🫙 Fish Sauce","🌶️ Chili"] },
+      { action: "Add vinegar",           correct: "🫙 Vinegar",   distractors: ["🍋 Lemon","🧃 Juice","💧 Water","🍊 Calamansi"] },
+      { action: "Add bay leaf",          correct: "🌿 Bay Leaf",  distractors: ["🍃 Basil","🌱 Thyme","🥬 Kangkong","🌿 Malunggay"] },
+      { action: "Brown in pan",          correct: "🍳 Pan",       distractors: ["🥘 Pot","🫕 Wok","🍲 Casserole","🥗 Bowl"] },
+    ]
+  },
+  {
+    name: "Tortang Talong",
+    emoji: "🍆",
+    steps: [
+      { action: "Grill eggplant", correct: "🍆 Eggplant", distractors: ["🥔 Potato","🌽 Corn","🥦 Broccoli","🫑 Bell Pepper"] },
+      { action: "Peel & flatten", correct: "🍴 Fork",     distractors: ["🥄 Spoon","🔪 Knife","🍳 Pan","🥘 Pot"] },
+      { action: "Dip in egg",     correct: "🥚 Egg",      distractors: ["🥛 Milk","🧀 Cheese","🍯 Sugar","🫚 Oil"] },
+      { action: "Fry it",         correct: "🫚 Oil",      distractors: ["💧 Water","🧂 Salt","🍋 Lemon","🍶 Soy Sauce"] },
+    ]
+  },
+  {
+    name: "Arroz Caldo",
+    emoji: "🍲",
+    steps: [
+      { action: "Sauté ginger",      correct: "🫚 Ginger",     distractors: ["🧄 Garlic","🧅 Onion","🌶️ Chili","🍅 Tomato"] },
+      { action: "Add chicken",       correct: "🍗 Chicken",    distractors: ["🥩 Beef","🐟 Fish","🥚 Egg","🦐 Shrimp"] },
+      { action: "Add rice",          correct: "🌾 Rice",       distractors: ["🍝 Noodles","🍞 Bread","🥔 Potato","🫘 Beans"] },
+      { action: "Season with patis", correct: "🫙 Fish Sauce", distractors: ["🧂 Salt","🍯 Sugar","🍶 Soy Sauce","🫙 Vinegar"] },
+    ]
+  },
 ];
 
-let currentRecipe = {};
-let gameItems = [];
-let timeLeft = 35;
-let level = 1;
-let timerId;
-let dragStartIndex;
+const KG_DIFFICULTY = {
+  easy:   { time: 45, options: 3, pointsPerStep: 100 },
+  medium: { time: 35, options: 4, pointsPerStep: 150 },
+  hard:   { time: 25, options: 5, pointsPerStep: 200 },
+};
 
-let touchDragIndex = null;
-let touchClone = null;
+const kg = {
+  diff:          "easy",
+  score:         0,
+  dishes:        0,
+  correctTaps:   0,
+  combo:         1,
+  bestCombo:     1,
+  recipe:        null,
+  stepIdx:       0,
+  timeLeft:      0,
+  timerInterval: null,
+  running:       false,
+};
 
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+let kgScreens = {};
+let kgEl      = {};
 
-function initLevel() {
-    const list = document.getElementById('step-list');
-    list.innerHTML = '';
-    
-    currentRecipe = database[Math.floor(Math.random() * database.length)];
-    const randomFail = currentRecipe.fails[Math.floor(Math.random() * currentRecipe.fails.length)];
-    gameItems = [...currentRecipe.steps, randomFail];
-    shuffle(gameItems);
+function kgInit() {
+  kgScreens = {
+    start: document.getElementById('kg-start'),
+    game:  document.getElementById('kg-game'),
+    over:  document.getElementById('kg-over'),
+  };
+  kgEl = {
+    score:      document.getElementById('kg-score'),
+    dishes:     document.getElementById('kg-dishes'),
+    combo:      document.getElementById('kg-combo'),
+    timerBar:   document.getElementById('kg-timer-bar'),
+    dishEmoji:  document.getElementById('kg-dish-emoji'),
+    dishName:   document.getElementById('kg-dish-name'),
+    stepsList:  document.getElementById('kg-steps-list'),
+    progress:   document.getElementById('kg-progress'),
+    feedback:   document.getElementById('kg-feedback'),
+    comboD:     document.getElementById('kg-combo-display'),
+    grid:       document.getElementById('kg-grid'),
+    finalScore: document.getElementById('kg-final-score'),
+    statDishes: document.getElementById('kg-stat-dishes'),
+    statCorrect:document.getElementById('kg-stat-correct'),
+    statCombo:  document.getElementById('kg-stat-combo'),
+    gradeBox:   document.getElementById('kg-grade-box'),
+    overTitle:  document.getElementById('kg-over-title'),
+    gradeMsg:   document.getElementById('kg-grade-msg'),
+  };
 
-    document.getElementById('recipe-name').innerText = currentRecipe.name;
-    document.getElementById('level-display').innerText = level;
-
-    gameItems.forEach((step, index) => {
-        const li = document.createElement('li');
-        li.setAttribute('data-index', index);
-        li.draggable = true;
-        li.innerText = step;
-        
-        li.addEventListener('dragstart', () => {
-            dragStartIndex = index;
-            li.classList.add('dragging');
-        });
-
-        li.addEventListener('dragend', () => {
-            li.classList.remove('dragging');
-        });
-        
-        li.addEventListener('dragover', (e) => {
-            e.preventDefault();
-        });
-        
-        li.addEventListener('drop', () => {
-            const dragEndIndex = +li.getAttribute('data-index');
-            swapItems(dragStartIndex, dragEndIndex);
-        });
-
-        li.addEventListener('touchstart', onTouchStart, { passive: true });
-        li.addEventListener('touchmove', onTouchMove, { passive: false });
-        li.addEventListener('touchend', onTouchEnd);
-        
-        list.appendChild(li);
+  document.querySelectorAll('.kg-diff-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.kg-diff-btn').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      kg.diff = btn.dataset.diff;
     });
+  });
+
+  document.getElementById('kg-start-btn').addEventListener('click', kgStartGame);
+  document.getElementById('kg-retry-btn').addEventListener('click', kgStartGame);
+  document.getElementById('kg-menu-btn').addEventListener('click', () => {
+    clearInterval(kg.timerInterval);
+    kg.running = false;
+    kgShowScreen('start');
+  });
 }
 
-function swapItems(fromIndex, toIndex) {
-    if (fromIndex === toIndex) return;
-    const temp = gameItems[fromIndex];
-    gameItems[fromIndex] = gameItems[toIndex];
-    gameItems[toIndex] = temp;
-    renderList();
+function kgShowScreen(name) {
+  Object.values(kgScreens).forEach(s => s.classList.remove('active'));
+  kgScreens[name].classList.add('active');
 }
 
-function renderList() {
-    const listItems = document.querySelectorAll('#step-list li');
-    listItems.forEach((li, i) => {
-        li.innerText = gameItems[i];
-        li.setAttribute('data-index', i);
-    });
+function kgShuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
-function onTouchStart(e) {
-    const li = e.currentTarget;
-    touchDragIndex = +li.getAttribute('data-index');
-
-    touchClone = li.cloneNode(true);
-    touchClone.style.position = 'fixed';
-    touchClone.style.zIndex = '9999';
-    touchClone.style.opacity = '0.85';
-    touchClone.style.pointerEvents = 'none';
-    touchClone.style.width = li.offsetWidth + 'px';
-    touchClone.style.margin = '0';
-    touchClone.style.left = li.getBoundingClientRect().left + 'px';
-    touchClone.style.top = li.getBoundingClientRect().top + 'px';
-    document.body.appendChild(touchClone);
-
-    li.classList.add('dragging');
+function kgRandomRecipe() {
+  return KG_RECIPES[Math.floor(Math.random() * KG_RECIPES.length)];
 }
 
-function onTouchMove(e) {
-    e.preventDefault();
-    const touch = e.touches[0];
+function kgUpdateHUD() {
+  kgEl.score.textContent  = kg.score;
+  kgEl.dishes.textContent = kg.dishes;
+  kgEl.combo.textContent  = `x${kg.combo}`;
+}
 
-    if (touchClone) {
-        touchClone.style.left = (touch.clientX - touchClone.offsetWidth / 2) + 'px';
-        touchClone.style.top = (touch.clientY - touchClone.offsetHeight / 2) + 'px';
+function kgStartTimer() {
+  const cfg = KG_DIFFICULTY[kg.diff];
+  kg.timeLeft = cfg.time;
+  clearInterval(kg.timerInterval);
+  kg.timerInterval = setInterval(() => {
+    kg.timeLeft -= 0.2;
+    const pct = Math.max(0, (kg.timeLeft / cfg.time) * 100);
+    kgEl.timerBar.style.width = pct + '%';
+    if (kg.timeLeft <= 0) kgEndGame();
+  }, 200);
+}
+
+function kgResetTimer() {
+  kg.timeLeft = KG_DIFFICULTY[kg.diff].time;
+  kgEl.timerBar.style.width = '100%';
+}
+
+function kgLoadRecipe() {
+  kg.recipe  = kgRandomRecipe();
+  kg.stepIdx = 0;
+  kgEl.dishEmoji.textContent = kg.recipe.emoji;
+  kgEl.dishName.textContent  = kg.recipe.name;
+  kgRenderStepTags();
+  kgRenderStep();
+}
+
+function kgRenderStepTags() {
+  kgEl.stepsList.innerHTML = '';
+  kg.recipe.steps.forEach((s, i) => {
+    const tag = document.createElement('div');
+    tag.className = 'kg-step-tag' + (i < kg.stepIdx ? ' done' : '');
+    tag.id = `kg-steptag-${i}`;
+    const icon = i < kg.stepIdx ? '✅' : (i === kg.stepIdx ? '👉' : '⬜');
+    tag.innerHTML = `<span>${icon}</span>${s.action}`;
+    kgEl.stepsList.appendChild(tag);
+  });
+}
+
+function kgRenderStep() {
+  const cfg  = KG_DIFFICULTY[kg.diff];
+  const step = kg.recipe.steps[kg.stepIdx];
+
+  kgEl.progress.textContent = `Step ${kg.stepIdx + 1} of ${kg.recipe.steps.length} — ${step.action}`;
+
+  const pool    = kgShuffle(step.distractors).slice(0, cfg.options - 1);
+  const options = kgShuffle([step.correct, ...pool]);
+
+  kgEl.grid.innerHTML = '';
+  options.forEach(opt => {
+    const parts = opt.split(' ');
+    const em    = parts[0];
+    const label = parts.slice(1).join(' ');
+    const btn   = document.createElement('button');
+    btn.className   = 'kg-ing-btn';
+    btn.dataset.val = opt;
+    btn.innerHTML   = `<span class="kg-em">${em}</span>${label}`;
+    btn.addEventListener('click', kgHandleTap);
+    kgEl.grid.appendChild(btn);
+  });
+}
+
+function kgHandleTap(e) {
+  if (!kg.running) return;
+  const btn     = e.currentTarget;
+  const step    = kg.recipe.steps[kg.stepIdx];
+  const correct = btn.dataset.val === step.correct;
+
+  if (correct) {
+    btn.classList.add('correct');
+    kg.correctTaps++;
+    const pts = KG_DIFFICULTY[kg.diff].pointsPerStep * kg.combo;
+    kg.score += pts;
+    kgShowFeedback(`+${pts} 🎉`, '#22c55e');
+    kg.combo++;
+    if (kg.combo > kg.bestCombo) kg.bestCombo = kg.combo;
+    kgEl.comboD.textContent = kg.combo >= 3 ? `🔥 COMBO x${kg.combo}!` : '';
+
+    kgEl.grid.querySelectorAll('.kg-ing-btn').forEach(b => b.style.pointerEvents = 'none');
+
+    const tag = document.getElementById(`kg-steptag-${kg.stepIdx}`);
+    if (tag) {
+      tag.classList.add('done');
+      tag.querySelector('span').textContent = '✅';
     }
 
-    const list = document.getElementById('step-list');
-    const items = list.querySelectorAll('li:not(.dragging)');
-    items.forEach(item => item.classList.remove('drag-over'));
+    setTimeout(() => {
+      kg.stepIdx++;
+      kgUpdateHUD();
 
-    const target = getTouchTarget(touch.clientX, touch.clientY);
-    if (target) target.classList.add('drag-over');
+      if (kg.stepIdx >= kg.recipe.steps.length) {
+        const bonus = 200 * kg.combo;
+        kg.score  += bonus;
+        kg.dishes += 1;
+        kgShowFeedback(`Dish done! +${bonus} bonus 🍽️`, '#f97316');
+        kgEl.comboD.textContent = '';
+        kgUpdateHUD();
+        kgResetTimer();
+        setTimeout(kgLoadRecipe, 900);
+      } else {
+        kgRenderStepTags();
+        kgRenderStep();
+      }
+    }, 500);
+
+  } else {
+    btn.classList.add('wrong');
+    kg.combo = 1;
+    kgEl.comboD.textContent = '';
+    kgShowFeedback(`Wrong! Try again 😬`, '#e8392b');
+    kgUpdateHUD();
+    setTimeout(() => btn.classList.remove('wrong'), 400);
+  }
 }
 
-function onTouchEnd(e) {
-    const touch = e.changedTouches[0];
-    const target = getTouchTarget(touch.clientX, touch.clientY);
-
-    if (target !== null) {
-        const toIndex = +target.getAttribute('data-index');
-        swapItems(touchDragIndex, toIndex);
-    }
-
-    if (touchClone) {
-        touchClone.remove();
-        touchClone = null;
-    }
-
-    document.querySelectorAll('#step-list li').forEach(li => {
-        li.classList.remove('dragging', 'drag-over');
-    });
-
-    touchDragIndex = null;
+let kgFeedbackTimer = null;
+function kgShowFeedback(msg, color) {
+  kgEl.feedback.textContent   = msg;
+  kgEl.feedback.style.color   = color;
+  kgEl.feedback.style.opacity = 1;
+  clearTimeout(kgFeedbackTimer);
+  kgFeedbackTimer = setTimeout(() => { kgEl.feedback.style.opacity = 0.4; }, 900);
 }
 
-function getTouchTarget(x, y) {
-    const list = document.getElementById('step-list');
-    const items = list.querySelectorAll('li');
-    for (const item of items) {
-        if (item.classList.contains('dragging')) continue;
-        const rect = item.getBoundingClientRect();
-        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-            return item;
-        }
-    }
-    return null;
+function kgStartGame() {
+  kg.score       = 0;
+  kg.dishes      = 0;
+  kg.correctTaps = 0;
+  kg.combo       = 1;
+  kg.bestCombo   = 1;
+  kg.running     = true;
+  kgUpdateHUD();
+  kgShowScreen('game');
+  kgLoadRecipe();
+  kgStartTimer();
 }
 
-function startGame() {
-    level = 1;
-    timeLeft = 35;
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('feedback').innerText = "";
-    initLevel();
-    startTimer();
+function kgEndGame() {
+  clearInterval(kg.timerInterval);
+  kg.running = false;
+  kgShowScreen('over');
+
+  kgEl.finalScore.textContent  = kg.score;
+  kgEl.statDishes.textContent  = kg.dishes;
+  kgEl.statCorrect.textContent = kg.correctTaps;
+  kgEl.statCombo.textContent   = `x${kg.bestCombo}`;
+
+  let grade = '🥄', msg = "Keep practicing — you'll get it!";
+  if      (kg.score >= 3000) { grade = '🏆'; msg = 'Outstanding Chef! Punong Guro would be proud! 🌟'; }
+  else if (kg.score >= 1800) { grade = '🥇'; msg = 'Excellent work, Kitchen Master! 👩‍🍳'; }
+  else if (kg.score >= 900)  { grade = '🥈'; msg = 'Great job! You know your way around the kitchen!'; }
+  else if (kg.score >= 300)  { grade = '🥉'; msg = 'Good try! Study your recipes and go again!'; }
+
+  kgEl.gradeBox.textContent  = grade;
+  kgEl.overTitle.textContent = kg.score >= 900 ? 'Great Cooking! 🎉' : "Time's Up!";
+  kgEl.gradeMsg.textContent  = msg;
 }
 
-function startTimer() {
-    clearInterval(timerId);
-    timerId = setInterval(() => {
-        timeLeft--;
-        document.getElementById('timer').innerText = timeLeft;
-        if (timeLeft <= 0) {
-            clearInterval(timerId);
-            showGameOver();
-        }
-    }, 1000);
-}
-
-function checkOrder() {
-    const isWin = JSON.stringify(gameItems.slice(0, 5)) === JSON.stringify(currentRecipe.steps);
-    if (isWin) {
-        level++;
-        timeLeft += 10; 
-        initLevel();
-        document.getElementById('feedback').innerText = "Order Up! +10s";
-        document.getElementById('feedback').style.color = "#2ecc71";
-    } else {
-        document.getElementById('feedback').innerText = "Dish Rejected! Fix the order.";
-        document.getElementById('feedback').style.color = "#e74c3c";
-    }
-}
-
-function showGameOver() {
-    const overlay = document.getElementById('overlay');
-    const title = document.getElementById('modal-title');
-    const desc = document.getElementById('modal-desc');
-    const btn = document.getElementById('restart-btn');
-    
-    overlay.style.display = 'flex';
-    title.innerText = "STATION CLOSED!";
-    desc.innerText = `Final Career Level: ${level - 1}`;
-    btn.innerText = "START NEW SHIFT";
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', kgInit);
+} else {
+  kgInit();
 }

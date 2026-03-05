@@ -12,28 +12,67 @@
         <a href="../index.html"><button class="mainBtns">Go Back to Home Page <-</button></a>
     </header>
 
-    <div id="kitchen-game">
-        <div id="game-header">
-            <h2 id="recipe-name">TVL CHALLENGE</h2>
-            <div id="stats-bar">
-                <span>Level: <b id="level-display">1</b></span>
-                <span>Time: <b id="timer">30</b>s</span>
-            </div>
+    <section id="kitchen-game">
+        <div id="kg-scorebar">
+            <span>⭐ Score: <strong id="kg-score">0</strong></span>
+            <span>🍽️ Dishes: <strong id="kg-dishes">0</strong></span>
+            <span>🔥 Combo: <strong id="kg-combo">x1</strong></span>
         </div>
-        
-        <ul id="step-list"></ul>
-        
-        <button id="serve-btn" onclick="checkOrder()">SERVE / FINISH</button>
-        <div id="feedback"></div>
 
-        <div id="overlay">
-            <div id="modal">
-                <h1 id="modal-title">READY CHEF?</h1>
-                <p id="modal-desc">Organize the steps before time runs out.</p>
-                <button id="restart-btn" onclick="startGame()">START CAREER</button>
+        <div id="kg-timer-wrap">
+            <div id="kg-timer-bar"></div>
+        </div>
+
+        <div class="kg-screen active" id="kg-start">
+            <div class="kg-big-emoji">👩‍🍳</div>
+            <h2>Welcome to the Kitchen!</h2>
+            <p>A dish appears with steps to complete. Tap the correct ingredient for each step in order. Build combos for bonus points — be fast!</p>
+            <div class="kg-diff-btns">
+            <button class="kg-diff-btn sel" data-diff="easy">🥗 Easy</button>
+            <button class="kg-diff-btn" data-diff="medium">🍲 Medium</button>
+            <button class="kg-diff-btn" data-diff="hard">🌶️ Hard</button>
+            </div>
+            <button class="kg-btn kg-btn-start" id="kg-start-btn">▶ Start Cooking!</button>
+        </div>
+
+        <div class="kg-screen" id="kg-game">
+            <div id="kg-dish-display">
+            <div class="kg-label">📋 Today's Dish</div>
+            <div id="kg-dish-emoji">🍳</div>
+            <div id="kg-dish-name">Loading...</div>
+            </div>
+
+            <div id="kg-steps-area">
+            <div class="kg-label">📝 Steps to Complete</div>
+            <div id="kg-steps-list"></div>
+            </div>
+
+            <div id="kg-progress">Step 1 of 3 — Select the ingredient!</div>
+            <div id="kg-feedback">Let's cook! 🎉</div>
+            <div id="kg-combo-display"></div>
+
+            <div class="kg-label" style="align-self:flex-start;">🧺 Tap the correct ingredient:</div>
+            <div id="kg-grid"></div>
+        </div>
+
+        <div class="kg-screen" id="kg-over">
+            <div id="kg-grade-box">🏆</div>
+            <h2 id="kg-over-title">Time's Up!</h2>
+            <div id="kg-final-score">0</div>
+            <div class="kg-sub">Total Points</div>
+            <div class="kg-stats">
+            <div class="kg-stat-card"><div class="kg-val" id="kg-stat-dishes">0</div><div class="kg-key">Dishes Done</div></div>
+            <div class="kg-stat-card"><div class="kg-val" id="kg-stat-correct">0</div><div class="kg-key">Correct Taps</div></div>
+            <div class="kg-stat-card"><div class="kg-val" id="kg-stat-combo">0</div><div class="kg-key">Best Combo</div></div>
+            </div>
+            <div id="kg-grade-msg"></div>
+            <div class="kg-btn-row">
+            <button class="kg-btn kg-btn-retry" id="kg-retry-btn">🔄 Play Again</button>
+            <button class="kg-btn kg-btn-menu" id="kg-menu-btn">🏠 Main Menu</button>
             </div>
         </div>
-    </div>
+
+    </section>
     <script src="script.js"></script>
 </body>
 </html>
