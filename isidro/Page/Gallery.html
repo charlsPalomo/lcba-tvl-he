@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCBA | Video Gallery</title>
+  <link rel="stylesheet" href="Gallery.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navlogo">Laguna College of Business and Arts | Video Gallery</div>
+  <div class="menutoggle" id="menuToggle">☰</div>
+  <ul class="navlinks" id="navLinks">
+    <li><a href="../../index.html" id="navlink">Back to Home</a></li>
+  </ul>
+</nav>
+
+<div class="contentbox">
+  <div class="contentbox1">
+    <h1>Video Gallery</h1>
+  </div>
+
+  <p class="description">
+    This gallery showcases a collection of animation short films created by students and faculty. The first video features an animated cooking scene with a cheerful mouse character greeting viewers in a kitchen setting. The second highlights a hand-drawn animation inspired by Baymax from Big Hero 6, demonstrating character design skills. The third is a Food and Beverage Services animation short movie, likely created as a school project blending industry knowledge with creative storytelling. The fourth thumbnail displays the Laguna College of Business and Arts (LCBA) logo, representing the institution behind these creative works.
+  </p>
+    <div class="contentbox1">
+      <h1 style="margin-bottom: 5%;">TVL-HE students during hands-on training and school activities.</h1>
+  <div class="gallery">
+    <video src="../Videos/bandpcommit.mp4" muted></video>
+    <video src="../Videos/cookinvent.mp4" muted poster="/Photos/thumbnail/Screenshot 2026-03-05 224057.png"></video>
+    <video src="../Videos/fandb.mp4" muted poster="/Photos/thumbnail/Screenshot 2026-03-05 222648.png"></video>
+    <video src="../Videos/housekeep.mp4" muted poster="/Photos/thumbnail/Screenshot 2026-03-05 222844.png"></video>
+  </div>
+</div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="closeBtn">&times;</span>
+  <video controls id="lightboxVideo"></video>
+</div>
+
+<script>
+  const videos = document.querySelectorAll(".gallery video");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxVideo = document.getElementById("lightboxVideo");
+  const closeBtn = document.getElementById("closeBtn");
+
+  videos.forEach(video => {
+    video.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxVideo.src = video.src;
+      lightboxVideo.play();
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+    lightboxVideo.pause();
+    lightboxVideo.src = "";
+  });
+
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("navLinks");
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("show");
+  });
+</script>
+
+
+<footer>
+        <h4>Information:</h4>
+        <h4>Contact Us: SMART: 0961-074-5530</h4>
+        <h4>Send us an Email: info@lcba.edu.ph</h4>
+        <h4>Address: P.Burgos St., Calamba City, Laguna, 4027</h4>
+        <h4>© 2026 Laguna College of Business and Arts. All Rights Reserved.</h4>
+        <br>
+        <h6>Made by: Charlemagne B. Palomo & Andrei Justin S. Isidro </h6>
+    </footer>
+
+
+</body>
+</html>

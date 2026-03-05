@@ -207,6 +207,17 @@ body
     cursor: pointer;
 }
 
+
+footer {
+  background-color: #0b3c88;
+  border-top: 3px solid whitesmoke;
+  color: whitesmoke;
+  text-align: center;
+  padding: 20px;
+  margin-top: 4%;
+  font-size: 12px;
+}
+
 @media (max-width: 1280px)
 {
     .headermainPic
