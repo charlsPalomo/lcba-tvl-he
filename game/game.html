@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../assets/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCBA | Game</title>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html"><button class="mainBtns">Go Back to Home Page <-</button></a>
+    </header>
+
+    <div id="kitchen-game">
+        <div id="game-header">
+            <h2 id="recipe-name">TVL CHALLENGE</h2>
+            <div id="stats-bar">
+                <span>Level: <b id="level-display">1</b></span>
+                <span>Time: <b id="timer">30</b>s</span>
+            </div>
+        </div>
+        
+        <ul id="step-list"></ul>
+        
+        <button id="serve-btn" onclick="checkOrder()">SERVE / FINISH</button>
+        <div id="feedback"></div>
+
+        <div id="overlay">
+            <div id="modal">
+                <h1 id="modal-title">READY CHEF?</h1>
+                <p id="modal-desc">Organize the steps before time runs out.</p>
+                <button id="restart-btn" onclick="startGame()">START CAREER</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
